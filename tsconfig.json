@@ -6,7 +6,10 @@
     "moduleResolution": "bundler",
     "strict": true,
     "skipLibCheck": true,
-    "types": ["@hono/node", "vercel"]
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react-jsx",
+    "types": ["bun-types"]
   },
   "include": ["src/**/*"]
 }

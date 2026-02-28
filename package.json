@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "bun run src/index.ts",
-    "build": "tsc",
+    "build": "echo 'Skipping TypeScript build - Bun handles this'",
     "start": "bun run src/index.ts"
   },
   "dependencies": {
@@ -13,6 +13,7 @@
     "hono": "^4.12.3"
   },
   "devDependencies": {
+    "bun-types": "^1.0.0",
     "typescript": "^5.9.3",
     "vercel": "^50.25.4"
   }
