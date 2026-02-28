@@ -22,7 +22,7 @@ proxyRoute.get('/', async (c) => {
     });
     
     if (!response.ok) {
-      return c.json({ error: 'Failed to fetch resource' }, response.status);
+      return c.json({ error: 'Failed to fetch resource' }, Number(response.status) as any);
     }
     
     const m3u8Content = await response.text();
@@ -37,8 +37,8 @@ proxyRoute.get('/', async (c) => {
       }
     });
     
-  } catch (error) {
-    return c.json({ error: error.message }, 500);
+  } catch (error: any) {
+    return c.json({ error: error?.message || 'Unknown error' }, 500);
   }
 });
 
@@ -47,7 +47,7 @@ proxyRoute.options('/', (c) => {
   c.header('Access-Control-Allow-Origin', '*');
   c.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
   c.header('Access-Control-Allow-Headers', 'Range, Content-Type, Accept');
-  return c.text('', 204);
+  return c.text('', 204 as any);
 });
 
 export default proxyRoute;
