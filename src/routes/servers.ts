@@ -15,9 +15,7 @@ const serversRoute = new Hono();
 
 serversRoute.get('/', async (c) => {
   try {
-    const episodeId = c.req.query('episodeId');
-
-    const result = serversSchema.safeParse({ episodeId });
+    const result = serversSchema.safeParse({ episodeId: c.req.query('episodeId') });
     
     if (!result.success) {
       return c.json({
@@ -28,6 +26,8 @@ serversRoute.get('/', async (c) => {
         }
       }, 400);
     }
+
+    const { episodeId } = result.data;
 
     const cacheKey = cacheKeys.servers(episodeId);
     const servers = await withCache(cacheKey, () => getEpisodeServers(episodeId), config.cache.servers);
