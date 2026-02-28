@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 import { z } from 'zod';
 import { getEpisodes } from '../services/aniwatch';
-import { withCache, cacheKeys, cacheTTL } from '../services/cache';
+import { withCache, cacheKeys } from '../services/cache';
 import { handleError } from '../utils/errors';
 import { config } from '../config';
 
