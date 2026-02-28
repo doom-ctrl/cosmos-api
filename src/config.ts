@@ -11,6 +11,8 @@ const configSchema = z.object({
     episodes: z.coerce.number().default(86400),
     servers: z.coerce.number().default(3600),
     stream: z.coerce.number().default(1800),
+    home: z.coerce.number().default(3600),
+    recent: z.coerce.number().default(1800),
   }),
   timeout: z.object({
     request: z.coerce.number().default(10000),
@@ -39,6 +41,8 @@ function loadConfig(): Config {
       episodes: parseInt(process.env.CACHE_TTL_EPISODES || '86400'),
       servers: parseInt(process.env.CACHE_TTL_SERVERS || '3600'),
       stream: parseInt(process.env.CACHE_TTL_STREAM || '1800'),
+      home: parseInt(process.env.CACHE_TTL_HOME || '3600'),
+      recent: parseInt(process.env.CACHE_TTL_RECENT || '1800'),
     },
     timeout: {
       request: parseInt(process.env.REQUEST_TIMEOUT || '10000'),

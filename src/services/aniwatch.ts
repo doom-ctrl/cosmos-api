@@ -195,3 +195,44 @@ export async function getGenreAnime(genreName: string, page: number = 1) {
     topAiringAnimes: []
   };
 }
+
+export async function getRecentAnime(page: number = 1) {
+  return withRetry(
+    async () => {
+      const [subbed, dubbed] = await Promise.all([
+        scraper.getSubbedAnime(page),
+        scraper.getDubbedAnime(page)
+      ]);
+
+      const allAnimes = [
+        ...subbed.results.map((anime: any) => ({
+          id: anime.dataId,
+          title: anime.title,
+          image: anime.image,
+          type: anime.type,
+          episodes: anime.language,
+          isSubbed: true,
+          isDubbed: false
+        })),
+        ...dubbed.results.map((anime: any) => ({
+          id: anime.dataId,
+          title: anime.title,
+          image: anime.image,
+          type: anime.type,
+          episodes: anime.language,
+          isSubbed: false,
+          isDubbed: true
+        }))
+      ];
+
+      return {
+        animes: allAnimes,
+        pagination: {
+          currentPage: page,
+          hasNextPage: subbed.hasNextPage || dubbed.hasNextPage
+        }
+      };
+    },
+    `getRecentAnime(${page})`
+  );
+}

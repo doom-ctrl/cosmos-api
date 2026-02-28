@@ -48,5 +48,7 @@ export const cacheKeys = {
   episodes: (id: string) => `episodes:${id}`,
   servers: (episodeId: string) => `servers:${episodeId}`,
   stream: (episodeId: string, server: string, type: string) => 
-    `stream:${episodeId}:${server}:${type}`
+    `stream:${episodeId}:${server}:${type}`,
+  home: () => 'home',
+  recent: (page: number) => `recent:${page}`
 };

@@ -154,6 +154,8 @@ The API includes in-memory caching to reduce redundant requests to the upstream 
 | Episodes | 24 hours |
 | Servers | 1 hour |
 | Stream | 30 minutes |
+| Home | 1 hour |
+| Recent | 30 minutes |
 
 ## Configuration
 
@@ -192,6 +194,7 @@ Expected response:
 
 Now that you understand the response format, proceed to:
 
+- [Home & Recent](./02a-home-recent.md) - Get homepage and recently added anime
 - [Search Anime](./02-search-anime.md) - Learn how to search for anime
 - [Anime Details](./03-anime-details.md) - Get detailed anime information
 - [Episodes List](./04-episodes-list.md) - Fetch episode lists
